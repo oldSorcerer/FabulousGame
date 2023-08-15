@@ -1,6 +1,6 @@
 package org.example.entity;
 
-public abstract class AbstractSuppurt extends Unit {
+public abstract class AbstractSuppurt extends AbstractUnit {
     public AbstractSuppurt(String name, int damage, int moveDistance, int maxHp, int hp, int speed, int x, int y) {
         super(name, damage, moveDistance, maxHp, hp, speed, x, y);
     }

@@ -2,7 +2,7 @@ package org.example.entity;
 
 import java.util.ArrayList;
 
-public abstract class AbstractMagic extends Unit {
+public abstract class AbstractMagic extends AbstractUnit {
 
     public int mana;
 
@@ -16,7 +16,7 @@ public abstract class AbstractMagic extends Unit {
     }
 
     @Override
-    public void step(ArrayList<Unit> units, ArrayList<Unit> team) {
+    public void step(ArrayList<AbstractUnit> units, ArrayList<AbstractUnit> team) {
         if (getState() == "dead") return;
     }
 }

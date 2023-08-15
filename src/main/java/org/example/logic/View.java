@@ -1,8 +1,7 @@
 package org.example.logic;
 
 import org.example.Main;
-import org.example.entity.Unit;
-import org.example.logic.AnsiColors;
+import org.example.entity.AbstractUnit;
 
 import java.util.Collections;
 
@@ -30,7 +29,7 @@ public class View {
     }
     private static String getChar(int x, int y){
         String out = "| ";
-        for (Unit human: Main.allTeam) {
+        for (AbstractUnit human: Main.allTeam) {
             if (human.getCoords().get(0) == x && human.getCoords().get(1) == y){
                 if (human.getHp() == 0) {
                     out = "|" + (AnsiColors.ANSI_RED + human.getType().charAt(0) + AnsiColors.ANSI_RESET);

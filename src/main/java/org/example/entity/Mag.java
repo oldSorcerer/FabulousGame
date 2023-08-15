@@ -11,7 +11,7 @@ public class Mag extends AbstractMagic {
     }
 
     @Override
-    public void step(ArrayList<Unit> units, ArrayList<Unit> team) {
+    public void step(ArrayList<AbstractUnit> units, ArrayList<AbstractUnit> team) {
         if (getState() == "alive") {
             if(getMana()>0){
                 nearest(units).HP_damage(damage());

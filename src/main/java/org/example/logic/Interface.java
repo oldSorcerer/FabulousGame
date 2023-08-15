@@ -1,12 +1,12 @@
 package org.example.logic;
 
-import org.example.entity.Unit;
+import org.example.entity.AbstractUnit;
 
 import java.util.ArrayList;
 
 public interface Interface {
 
-    void step(ArrayList<Unit> units, ArrayList<Unit> team);
+    void step(ArrayList<AbstractUnit> units, ArrayList<AbstractUnit> team);
 
     String getInfo();
 }

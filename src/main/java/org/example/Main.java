@@ -10,35 +10,35 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
-    public static ArrayList<Unit> team1 = new ArrayList<>();
-    public static ArrayList<Unit> team2 = new ArrayList<>();
-    public static ArrayList<Unit> allTeam = new ArrayList<>();
+    public static ArrayList<AbstractUnit> team1 = new ArrayList<>();
+    public static ArrayList<AbstractUnit> team2 = new ArrayList<>();
+    public static ArrayList<AbstractUnit> allTeam = new ArrayList<>();
     public static void main(String[] args) {
 
 
         for (int i = 0; i < 11; i++) {
             int val = new Random().nextInt(7);
             switch (val) {
-                case 0 -> team1.add(new Mag(Unit.setName(),1, i));
-                case 1 -> team1.add(new Monk(Unit.setName(),1, i));
-                case 2 -> team1.add(new Peasant(Unit.setName(),1, i));
-                case 3 -> team1.add(new Robber(Unit.setName(),1, i));
-                case 4 -> team1.add(new Sniper(Unit.setName(),1, i));
-                case 5 -> team1.add(new Spearman(Unit.setName(),1, i));
-                case 6 -> team1.add(new Сrossbowman(Unit.setName(),1, i));
+                case 0 -> team1.add(new Mag(AbstractUnit.setName(),1, i));
+                case 1 -> team1.add(new Monk(AbstractUnit.setName(),1, i));
+                case 2 -> team1.add(new Peasant(AbstractUnit.setName(),1, i));
+                case 3 -> team1.add(new Robber(AbstractUnit.setName(),1, i));
+                case 4 -> team1.add(new Sniper(AbstractUnit.setName(),1, i));
+                case 5 -> team1.add(new Spearman(AbstractUnit.setName(),1, i));
+                case 6 -> team1.add(new Сrossbowman(AbstractUnit.setName(),1, i));
             }
         }
 
         for (int i = 0; i < 11; i++) {
             int val = new Random().nextInt(7);
             switch (val) {
-                case 0 -> team2.add(new Mag(Unit.setName(),10, i));
-                case 1 -> team2.add(new Monk(Unit.setName(),10, i));
-                case 2 -> team2.add(new Peasant(Unit.setName(),10, i));
-                case 3 -> team2.add(new Robber(Unit.setName(),10, i));
-                case 4 -> team2.add(new Sniper(Unit.setName(),10, i));
-                case 5 -> team2.add(new Spearman(Unit.setName(),10, i));
-                case 6 -> team2.add(new Сrossbowman(Unit.setName(),10, i));
+                case 0 -> team2.add(new Mag(AbstractUnit.setName(),10, i));
+                case 1 -> team2.add(new Monk(AbstractUnit.setName(),10, i));
+                case 2 -> team2.add(new Peasant(AbstractUnit.setName(),10, i));
+                case 3 -> team2.add(new Robber(AbstractUnit.setName(),10, i));
+                case 4 -> team2.add(new Sniper(AbstractUnit.setName(),10, i));
+                case 5 -> team2.add(new Spearman(AbstractUnit.setName(),10, i));
+                case 6 -> team2.add(new Сrossbowman(AbstractUnit.setName(),10, i));
             }
         }
 
@@ -50,11 +50,11 @@ public class Main {
 
         allTeam.addAll(team1);
         allTeam.addAll(team2);
-        allTeam.sort(Comparator.comparing(Unit::getSpeed));
+        allTeam.sort(Comparator.comparing(AbstractUnit::getSpeed));
         Collections.reverse(allTeam);
-        team1.sort(Comparator.comparing(Unit::getSpeed));
+        team1.sort(Comparator.comparing(AbstractUnit::getSpeed));
         Collections.reverse(team1);
-        team2.sort(Comparator.comparing(Unit::getSpeed));
+        team2.sort(Comparator.comparing(AbstractUnit::getSpeed));
         Collections.reverse(team2);
 
 
@@ -73,7 +73,7 @@ public class Main {
         while(true) {
             View.view();
             in.nextLine();
-            for (Unit hero : allTeam) {
+            for (AbstractUnit hero : allTeam) {
                 if (team2.contains(hero)) hero.step(team1, team2);
                 else hero.step(team2, team1);
             }
@@ -87,8 +87,8 @@ public class Main {
             }
         }
     }
-    static boolean isTeamDie(ArrayList<Unit> team) {
-        for (Unit hero: team) {
+    static boolean isTeamDie(ArrayList<AbstractUnit> team) {
+        for (AbstractUnit hero: team) {
             if (hero.getState()=="alive") return false;
         }
         return true;

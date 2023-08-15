@@ -6,7 +6,7 @@ import org.example.logic.Names;
 import java.util.ArrayList;
 import java.util.Random;
 
-public abstract class Unit implements Interface {
+public abstract class AbstractUnit implements Interface {
 
     protected boolean standby;
     private String name;
@@ -19,7 +19,7 @@ public abstract class Unit implements Interface {
 
     Coordinates coordinates;
 
-    public Unit(String name, int damage, int moveDistance, int maxHp, int hp, int speed, int x, int y) {
+    public AbstractUnit(String name, int damage, int moveDistance, int maxHp, int hp, int speed, int x, int y) {
         this.name = name;
         this.damage = damage;
         this.maxHp = maxHp;
@@ -34,7 +34,7 @@ public abstract class Unit implements Interface {
         return coordinates.xy;
     }
 
-    public void move(Coordinates targetPosition, ArrayList<Unit> team) {
+    public void move(Coordinates targetPosition, ArrayList<AbstractUnit> team) {
         if (!coordinates.containsByPos(coordinates.newPosition(targetPosition, team), team)) {
             for (int i = 0; i < moveDistance; i++) {
                 coordinates = coordinates.newPosition(targetPosition, team);
@@ -47,9 +47,9 @@ public abstract class Unit implements Interface {
         return String.format("%s %s hp:%d", getType(), name, hp);
     }
 
-    public Unit nearest(ArrayList<Unit> units) {
+    public AbstractUnit nearest(ArrayList<AbstractUnit> units) {
         double nearestDistance = Double.MAX_VALUE;
-        Unit nearestEnemy = null;
+        AbstractUnit nearestEnemy = null;
         for (int i = 0; i < units.size(); i++) {
             if (coordinates.countDistance(units.get(i).coordinates) < nearestDistance) {
                 if (units.get(i).getState() == "alive") {

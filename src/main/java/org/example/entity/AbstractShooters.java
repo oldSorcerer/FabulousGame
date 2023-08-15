@@ -2,7 +2,7 @@ package org.example.entity;
 
 import java.util.ArrayList;
 
-public abstract class AbstractShooters extends Unit {
+public abstract class AbstractShooters extends AbstractUnit {
 
     private int shoots;
 
@@ -16,9 +16,9 @@ public abstract class AbstractShooters extends Unit {
     }
 
     @Override
-    public void step(ArrayList<Unit> units, ArrayList<Unit> team) {
+    public void step(ArrayList<AbstractUnit> units, ArrayList<AbstractUnit> team) {
         if (getState() == "dead" || this.shoots == 0) return;
-        for (Unit unit : team) {
+        for (AbstractUnit unit : team) {
             if (unit.getType().equals("Peasant") && unit.getState() == "alive"&& unit.standby==true ) {
                 if (unit.getHp() > 0) {
                     shoots++;

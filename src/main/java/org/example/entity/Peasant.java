@@ -9,7 +9,7 @@ public class Peasant extends AbstractSuppurt {
     }
 
     @Override
-    public void step(ArrayList<Unit> units, ArrayList<Unit> team) {
+    public void step(ArrayList<AbstractUnit> units, ArrayList<AbstractUnit> team) {
         if (getState() == "dead") return;
         state = "standby";
     }

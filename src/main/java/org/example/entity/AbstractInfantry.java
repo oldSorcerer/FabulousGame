@@ -2,7 +2,7 @@ package org.example.entity;
 
 import java.util.ArrayList;
 
-public abstract class AbstractInfantry extends Unit {
+public abstract class AbstractInfantry extends AbstractUnit {
 
     protected int attacksAmount;
     protected int attackRange;
@@ -15,7 +15,7 @@ public abstract class AbstractInfantry extends Unit {
     }
 
     @Override
-    public void step(ArrayList<Unit> units, ArrayList<Unit> team) {
+    public void step(ArrayList<AbstractUnit> units, ArrayList<AbstractUnit> team) {
         if (getState() == "dead") return;
 
         if (coordinates.countDistance(nearest(units).coordinates) <= attackRange) {

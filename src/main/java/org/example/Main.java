@@ -3,18 +3,14 @@ package org.example;
 import org.example.entity.*;
 import org.example.logic.View;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
-    public static ArrayList<AbstractUnit> team1 = new ArrayList<>();
-    public static ArrayList<AbstractUnit> team2 = new ArrayList<>();
-    public static ArrayList<AbstractUnit> allTeam = new ArrayList<>();
-    public static void main(String[] args) {
+    public static List<AbstractUnit> team1 = new ArrayList<>();
+    public static List<AbstractUnit> team2 = new ArrayList<>();
+    public static List<AbstractUnit> allTeam = new ArrayList<>();
 
+    public static void main(String[] args) {
 
         for (int i = 0; i < 11; i++) {
             int val = new Random().nextInt(7);
@@ -25,7 +21,7 @@ public class Main {
                 case 3 -> team1.add(new Robber(AbstractUnit.setName(),1, i));
                 case 4 -> team1.add(new Sniper(AbstractUnit.setName(),1, i));
                 case 5 -> team1.add(new Spearman(AbstractUnit.setName(),1, i));
-                case 6 -> team1.add(new Сrossbowman(AbstractUnit.setName(),1, i));
+                case 6 -> team1.add(new Crossbowman(AbstractUnit.setName(),1, i));
             }
         }
 
@@ -38,7 +34,7 @@ public class Main {
                 case 3 -> team2.add(new Robber(AbstractUnit.setName(),10, i));
                 case 4 -> team2.add(new Sniper(AbstractUnit.setName(),10, i));
                 case 5 -> team2.add(new Spearman(AbstractUnit.setName(),10, i));
-                case 6 -> team2.add(new Сrossbowman(AbstractUnit.setName(),10, i));
+                case 6 -> team2.add(new Crossbowman(AbstractUnit.setName(),10, i));
             }
         }
 
@@ -72,7 +68,7 @@ public class Main {
 //        }
         while(true) {
             View.view();
-            in.nextLine();
+//            in.nextLine();
             for (AbstractUnit hero : allTeam) {
                 if (team2.contains(hero)) hero.step(team1, team2);
                 else hero.step(team2, team1);
@@ -87,12 +83,12 @@ public class Main {
             }
         }
     }
-    static boolean isTeamDie(ArrayList<AbstractUnit> team) {
+
+    static boolean isTeamDie(List<AbstractUnit> team) {
         for (AbstractUnit hero: team) {
             if (hero.getState()=="alive") return false;
         }
         return true;
     }
-
 }
 

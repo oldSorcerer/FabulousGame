@@ -1,19 +1,23 @@
 package org.example.entity;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Monk extends AbstractMagic {
+
     private int heal;
+
     public Monk(String name, int x, int y) {
         super(name, 9, 3, 100,100, 6,3, x, y);
         this.heal = -5;
     }
+
     public int getHeal() {
         return heal;
     }
 
     @Override
-    public void step(ArrayList<AbstractUnit> units, ArrayList<AbstractUnit> team) {
+    public void step(List<AbstractUnit> units, List<AbstractUnit> team) {
         if (getState() == "alive") {
             if (getMana() > 0) {
                 float min_XP = Integer.MAX_VALUE;

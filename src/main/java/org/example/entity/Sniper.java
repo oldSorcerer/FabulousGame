@@ -1,7 +1,5 @@
 package org.example.entity;
 
-
-
 public class Sniper extends AbstractShooters {
 
     public Sniper(String name, int x, int y) {

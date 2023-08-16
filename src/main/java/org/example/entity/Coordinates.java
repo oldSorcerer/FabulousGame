@@ -1,6 +1,7 @@
 package org.example.entity;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Coordinates extends ArrayList<Integer> {
     int x;
@@ -20,7 +21,7 @@ public class Coordinates extends ArrayList<Integer> {
         return Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2));
     }
 
-    public Coordinates newPosition(Coordinates targetPosition, ArrayList<AbstractUnit> team) {
+    public Coordinates newPosition(Coordinates targetPosition, List<AbstractUnit> team) {
         Coordinates currentPos = new Coordinates(x, y);
 
         if (Math.abs(targetPosition.x - x) >= Math.abs(targetPosition.y - y)) {
@@ -35,7 +36,7 @@ public class Coordinates extends ArrayList<Integer> {
         return currentPos;
     }
 
-    public boolean containsByPos(Coordinates nextPosition, ArrayList<AbstractUnit> team) {
+    public boolean containsByPos(Coordinates nextPosition, List<AbstractUnit> team) {
         for (AbstractUnit avengers: team) {
             if (avengers.coordinates == nextPosition) return true;
         }

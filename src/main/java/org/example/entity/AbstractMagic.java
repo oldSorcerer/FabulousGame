@@ -1,6 +1,6 @@
 package org.example.entity;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public abstract class AbstractMagic extends AbstractUnit {
 
@@ -16,7 +16,7 @@ public abstract class AbstractMagic extends AbstractUnit {
     }
 
     @Override
-    public void step(ArrayList<AbstractUnit> units, ArrayList<AbstractUnit> team) {
+    public void step(List<AbstractUnit> units, List<AbstractUnit> team) {
         if (getState() == "dead") return;
     }
 }

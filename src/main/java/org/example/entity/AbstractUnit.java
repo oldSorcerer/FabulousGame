@@ -4,16 +4,19 @@ import org.example.logic.Interface;
 import org.example.logic.Names;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public abstract class AbstractUnit implements Interface {
 
     protected boolean standby;
+
     private String name;
     private int damage;
     private int maxHp;
     private int hp;
     private int speed;
+
     public int moveDistance;
     public String state;
 
@@ -34,7 +37,7 @@ public abstract class AbstractUnit implements Interface {
         return coordinates.xy;
     }
 
-    public void move(Coordinates targetPosition, ArrayList<AbstractUnit> team) {
+    public void move(Coordinates targetPosition, List<AbstractUnit> team) {
         if (!coordinates.containsByPos(coordinates.newPosition(targetPosition, team), team)) {
             for (int i = 0; i < moveDistance; i++) {
                 coordinates = coordinates.newPosition(targetPosition, team);
@@ -47,7 +50,7 @@ public abstract class AbstractUnit implements Interface {
         return String.format("%s %s hp:%d", getType(), name, hp);
     }
 
-    public AbstractUnit nearest(ArrayList<AbstractUnit> units) {
+    public AbstractUnit nearest(List<AbstractUnit> units) {
         double nearestDistance = Double.MAX_VALUE;
         AbstractUnit nearestEnemy = null;
         for (int i = 0; i < units.size(); i++) {
@@ -90,8 +93,7 @@ public abstract class AbstractUnit implements Interface {
     }
 
     public String getState() {
-        if (getHp() > 1) return "alive";
-        else return "dead";
+        return getHp() > 1 ? "alive" : "dead";
     }
 
     public void HP_damage(int damage) {

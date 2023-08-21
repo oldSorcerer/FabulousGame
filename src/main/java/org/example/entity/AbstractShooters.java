@@ -1,6 +1,5 @@
 package org.example.entity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public abstract class AbstractShooters extends AbstractUnit {
@@ -21,7 +20,7 @@ public abstract class AbstractShooters extends AbstractUnit {
         if (getState() == "dead" || this.shoots == 0) return;
         for (AbstractUnit unit : team) {
             if (unit.getType().equals("Peasant") && unit.getState() == "alive" && unit.standby) {
-                if (unit.getHp() > 0) {
+                if (unit.getHealthPoint() > 0) {
                     shoots++;
                     unit.state = "busy";
                     break;
@@ -35,7 +34,7 @@ public abstract class AbstractShooters extends AbstractUnit {
 
     @Override
     public String getInfo() {
-        return String.format("%s %s hp:%d shoots:%d", getType(), getName(), getHp(), shoots);
+        return String.format("%s %s hp:%d shoots:%d", getType(), getName(), getHealthPoint(), shoots);
     }
 }
 

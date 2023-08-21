@@ -9,37 +9,41 @@ import java.util.Random;
 
 public abstract class AbstractUnit implements Interface {
 
-    protected boolean standby;
+    protected boolean standby; // поддержка ?
 
-    private String name;
-    private int damage;
-    private int maxHp;
-    private int hp;
-    private int speed;
+    private final String name;
+    private final int damage;
+    private final int maxHealthPoint;
+    private int healthPoint;
+    private final int speed;
 
     public int moveDistance;
-    public String state;
+    public String state; // состояние
 
     Coordinates coordinates;
 
-    public AbstractUnit(String name, int damage, int moveDistance, int maxHp, int hp, int speed, int x, int y) {
+    // имя урон длина шага ?
+    public AbstractUnit(String name, int damage, int moveDistance, int maxHealthPoint, int healthPoint, int speed, int x, int y) {
         this.name = name;
         this.damage = damage;
-        this.maxHp = maxHp;
-        this.hp = hp;
-        this.speed = speed;
-        coordinates = new Coordinates(x, y);
         this.moveDistance = moveDistance;
-        this.state = "Standby";
+        this.maxHealthPoint = maxHealthPoint;
+        this.healthPoint = healthPoint;
+        this.speed = speed;
+
+        coordinates = new Coordinates(x, y);
+
+        state = "Standby";
     }
 
-    public ArrayList<Integer> getCoords() {
+    public List<Integer> getCoords() {
         return coordinates.xy;
     }
 
     public void move(Coordinates targetPosition, List<AbstractUnit> team) {
-        if (!coordinates.containsByPos(coordinates.newPosition(targetPosition, team), team)) {
-            for (int i = 0; i < moveDistance; i++) {
+        Coordinates integers = coordinates.newPosition(targetPosition, team);
+        if (!coordinates.containsByPos(integers, team)) {
+            for (int i = 0; i < moveDistance; i++) {// ??
                 coordinates = coordinates.newPosition(targetPosition, team);
             }
         }
@@ -47,25 +51,25 @@ public abstract class AbstractUnit implements Interface {
 
     @Override
     public String getInfo() {
-        return String.format("%s %s hp:%d", getType(), name, hp);
+        return String.format("%s %s hp:%d", getType(), name, healthPoint);
     }
 
     public AbstractUnit nearest(List<AbstractUnit> units) {
         double nearestDistance = Double.MAX_VALUE;
-        AbstractUnit nearestEnemy = null;
-        for (int i = 0; i < units.size(); i++) {
-            if (coordinates.countDistance(units.get(i).coordinates) < nearestDistance) {
-                if (units.get(i).getState() == "alive") {
-                    nearestEnemy = units.get(i);
-                    nearestDistance = coordinates.countDistance(units.get(i).coordinates);
+        AbstractUnit nearestEnemy = null; // ближайший враг
+        for (AbstractUnit unit : units) {
+            if (coordinates.countDistance(unit.coordinates) < nearestDistance) {
+                if (unit.getState() == "alive") {
+                    nearestEnemy = unit;
+                    nearestDistance = coordinates.countDistance(unit.coordinates);
                 }
             }
         }
         return nearestEnemy;
     }
 
-    public int getHp() {
-        return hp;
+    public int getHealthPoint() {
+        return healthPoint;
     }
 
     public int getDamage() {
@@ -88,20 +92,20 @@ public abstract class AbstractUnit implements Interface {
         return speed;
     }
 
-    public int getMaxHp() {
-        return maxHp;
+    public int getMaxHealthPoint() {
+        return maxHealthPoint;
     }
 
     public String getState() {
-        return getHp() > 1 ? "alive" : "dead";
+        return getHealthPoint() > 1 ? "alive" : "dead";
     }
 
     public void HP_damage(int damage) {
-        hp -= damage;
-        if (hp < 0) {
-            hp = 0;
+        healthPoint -= damage;
+        if (healthPoint < 0) {
+            healthPoint = 0;
         }
-        if (hp > maxHp) hp = maxHp;
+        if (healthPoint > maxHealthPoint) healthPoint = maxHealthPoint;
     }
 
     public int damage() {

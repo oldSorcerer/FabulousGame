@@ -6,7 +6,7 @@ import java.util.List;
 public class Coordinates extends ArrayList<Integer> {
     int x;
     int y;
-    ArrayList<Integer> xy = new ArrayList<>();
+    List<Integer> xy = new ArrayList<>();
 
     public Coordinates(int x, int y) {
         this.x = x;
@@ -15,18 +15,23 @@ public class Coordinates extends ArrayList<Integer> {
         xy.add(1, y);
     }
 
-    public double countDistance(Coordinates coordinates) {
+    public double countDistance(Coordinates coordinates) { //  растояния до цели
         int dx = coordinates.x - x;
         int dy = coordinates.y - y;
         return Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2));
     }
 
+    // движение к позиции
     public Coordinates newPosition(Coordinates targetPosition, List<AbstractUnit> team) {
         Coordinates currentPos = new Coordinates(x, y);
 
         if (Math.abs(targetPosition.x - x) >= Math.abs(targetPosition.y - y)) {
-            if (targetPosition.x - x > 0) currentPos.x += 1;
-            else currentPos.x -= 1;
+            //если t > current то двигаемся в права
+            if (targetPosition.x - x > 0) {
+                currentPos.x += 1;
+            } else { // двигаемся в лево
+                currentPos.x -= 1;
+            }
         }
 
         if (Math.abs(targetPosition.x - x) < Math.abs(targetPosition.y - y)) {
@@ -37,7 +42,7 @@ public class Coordinates extends ArrayList<Integer> {
     }
 
     public boolean containsByPos(Coordinates nextPosition, List<AbstractUnit> team) {
-        for (AbstractUnit avengers: team) {
+        for (AbstractUnit avengers : team) {
             if (avengers.coordinates == nextPosition) return true;
         }
         return false;

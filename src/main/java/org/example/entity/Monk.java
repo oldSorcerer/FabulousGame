@@ -1,6 +1,5 @@
 package org.example.entity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Monk extends AbstractMagic {
@@ -23,8 +22,8 @@ public class Monk extends AbstractMagic {
                 float min_XP = Integer.MAX_VALUE;
                 int index = 0;
                 for (int i = 0; i < team.size(); i++) {
-                    if ((float) (team.get(i).getHp() / getMaxHp()) < min_XP && team.get(i).getState() == "alive") {
-                        min_XP = (float) (team.get(i).getHp() / getMaxHp());
+                    if ((float) (team.get(i).getHealthPoint() / getMaxHealthPoint()) < min_XP && team.get(i).getState() == "alive") {
+                        min_XP = (float) (team.get(i).getHealthPoint() / getMaxHealthPoint());
                         index = i;
                     }
                     team.get(index).HP_damage(getHeal());

@@ -1,6 +1,7 @@
 package org.example.entity;
 
 import java.util.List;
+import java.util.Objects;
 
 public abstract class AbstractShooters extends AbstractUnit {
 
@@ -17,9 +18,9 @@ public abstract class AbstractShooters extends AbstractUnit {
 
     @Override
     public void step(List<AbstractUnit> units, List<AbstractUnit> team) {
-        if (getState() == "dead" || this.shoots == 0) return;
+        if (Objects.equals(getState(), "dead") || this.shoots == 0) return;
         for (AbstractUnit unit : team) {
-            if (unit.getType().equals("Peasant") && unit.getState() == "alive" && unit.standby) {
+            if (unit.getType().equals("Peasant") && Objects.equals(unit.getState(), "alive") && unit.standby) {
                 if (unit.getHealthPoint() > 0) {
                     shoots++;
                     unit.state = "busy";

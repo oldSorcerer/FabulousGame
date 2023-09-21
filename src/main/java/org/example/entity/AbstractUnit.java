@@ -5,6 +5,7 @@ import org.example.logic.Names;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 
 public abstract class AbstractUnit implements Interface {
@@ -59,7 +60,7 @@ public abstract class AbstractUnit implements Interface {
         AbstractUnit nearestEnemy = null; // ближайший враг
         for (AbstractUnit unit : units) {
             if (coordinates.countDistance(unit.coordinates) < nearestDistance) {
-                if (unit.getState() == "alive") {
+                if (Objects.equals(unit.getState(), "alive")) {
                     nearestEnemy = unit;
                     nearestDistance = coordinates.countDistance(unit.coordinates);
                 }

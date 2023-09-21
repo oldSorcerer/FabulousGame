@@ -1,6 +1,7 @@
 package org.example.entity;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Monk extends AbstractMagic {
 
@@ -17,7 +18,7 @@ public class Monk extends AbstractMagic {
 
     @Override
     public void step(List<AbstractUnit> units, List<AbstractUnit> team) {
-        if (getState() == "alive") {
+        if (Objects.equals(getState(), "alive")) {
             if (getMana() > 0) {
                 float min_XP = Integer.MAX_VALUE;
                 int index = 0;

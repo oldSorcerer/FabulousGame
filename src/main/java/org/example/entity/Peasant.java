@@ -1,7 +1,7 @@
 package org.example.entity;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Peasant extends AbstractSuppurt {
 
@@ -11,7 +11,9 @@ public class Peasant extends AbstractSuppurt {
 
     @Override
     public void step(List<AbstractUnit> units, List<AbstractUnit> team) {
-        if (getState() == "dead") return;
+        if (Objects.equals(getState(), "dead")) {
+            return;
+        }
         state = "standby";
     }
 

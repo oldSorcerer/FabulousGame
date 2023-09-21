@@ -2,6 +2,7 @@ package org.example.entity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Mag extends AbstractMagic {
 
@@ -11,7 +12,7 @@ public class Mag extends AbstractMagic {
 
     @Override
     public void step(List<AbstractUnit> units, List<AbstractUnit> team) {
-        if (getState() == "alive") {
+        if (Objects.equals(getState(), "alive")) {
             if(getMana()>0){
                 nearest(units).HP_damage(damage());
                 mana -= 1;

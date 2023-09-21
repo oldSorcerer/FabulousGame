@@ -89,7 +89,7 @@ public class Main {
 
     static boolean isTeamDie(List<AbstractUnit> team) {
         for (AbstractUnit hero : team) {
-            if (hero.getState() == "alive") return false;
+            if (Objects.equals(hero.getState(), "alive")) return false;
         }
         return true;
     }

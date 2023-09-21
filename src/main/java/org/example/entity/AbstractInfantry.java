@@ -1,6 +1,7 @@
 package org.example.entity;
 
 import java.util.List;
+import java.util.Objects;
 
 public abstract class AbstractInfantry extends AbstractUnit {
 
@@ -15,7 +16,7 @@ public abstract class AbstractInfantry extends AbstractUnit {
 
     @Override
     public void step(List<AbstractUnit> units, List<AbstractUnit> team) {
-        if (getState() == "dead") return;
+        if (Objects.equals(getState(), "dead")) return;
 
         if (coordinates.countDistance(nearest(units).coordinates) <= attackRange) {
             for (int i = 0; i < attacksAmount; i++) {
